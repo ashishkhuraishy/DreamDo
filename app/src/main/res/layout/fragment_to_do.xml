@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".toDo">
 
+
+    <!-- TODO: Update blank fragment layout -->
     <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
