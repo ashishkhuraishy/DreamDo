@@ -1,23 +1,20 @@
 package com.example.dreamdo;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-
-public class toDo extends Fragment {
+public class toDo extends BottomSheetDialogFragment {
 
     private TextInputEditText inputText;
     private MaterialButton button;
@@ -42,6 +39,7 @@ public class toDo extends Fragment {
             public void onClick(View view) {
                 CharSequence input = inputText.getText();
                 listener.OnInputInterface(input);
+                dismiss();
             }
         });
 

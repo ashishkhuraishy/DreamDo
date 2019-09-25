@@ -1,14 +1,17 @@
 package com.example.dreamdo;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.TextView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements toDo.FragmentListener {
 
-    private toDo toDoFragment;
     private TextView text;
+    private FloatingActionButton addListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +19,15 @@ public class MainActivity extends AppCompatActivity implements toDo.FragmentList
         setContentView(R.layout.activity_main);
 
         text = (TextView) findViewById(R.id.text1);
+        addListButton = (FloatingActionButton) findViewById(R.id.fab);
 
-        toDoFragment = new toDo();
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container1, toDoFragment)
-                .commit();
+        addListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toDo bottomSheetToDo = new toDo();
+                bottomSheetToDo.show(getSupportFragmentManager(), "New ToDo");
+            }
+        });
 
 
     }
