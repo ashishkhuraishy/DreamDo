@@ -3,6 +3,8 @@ package com.example.dreamdo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,10 +19,12 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoLi
     public class ToDoListViewHolder extends RecyclerView.ViewHolder {
 
         public TextView toDo;
+        public CheckBox checkBox;
 
         public ToDoListViewHolder(@NonNull View itemView) {
             super(itemView);
             toDo = (itemView).findViewById(R.id.todoTextView);
+            checkBox = itemView.findViewById(R.id.checkBox);
         }
     }
 
@@ -38,11 +42,20 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ToDoListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ToDoListViewHolder holder, final int position) {
 
         ToDoList currentItem = toDoLists.get(position);
-
         holder.toDo.setText(currentItem.getToDoList());
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    toDoLists.remove(position);
+                    notifyItemRemoved(position);
+                }
+            }
+        });
 
     }
 
