@@ -5,29 +5,47 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity implements toDo.FragmentListener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFragment.FragmentListener {
 
     private TextView text;
     private FloatingActionButton addListButton;
+    private ArrayList<ToDoList> toDoLists;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toDoLists = new ArrayList<>();
+
         text = (TextView) findViewById(R.id.text1);
         addListButton = (FloatingActionButton) findViewById(R.id.fab);
+        recyclerView.findViewById(R.id.recyclerView);
 
         addListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toDo bottomSheetToDo = new toDo();
-                bottomSheetToDo.show(getSupportFragmentManager(), "New ToDo");
+                ToDoBottomSheetFragment bottomSheetToDoBottomSheetFragment = new ToDoBottomSheetFragment();
+                bottomSheetToDoBottomSheetFragment.show(getSupportFragmentManager(), "New ToDo");
             }
         });
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ToDoListAdapter(toDoLists);
+
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
 
 
     }
@@ -35,6 +53,6 @@ public class MainActivity extends AppCompatActivity implements toDo.FragmentList
     @Override
     public void OnInputInterface(CharSequence input) {
 
-        text.setText(input);
+        toDoLists.add(new ToDoList(input));
     }
 }

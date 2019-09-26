@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-public class toDo extends BottomSheetDialogFragment {
+public class ToDoBottomSheetFragment extends BottomSheetDialogFragment {
 
     private TextInputEditText inputText;
     private MaterialButton button;
