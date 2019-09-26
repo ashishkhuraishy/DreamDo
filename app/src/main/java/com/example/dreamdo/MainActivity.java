@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
 
         text = (TextView) findViewById(R.id.text1);
         addListButton = (FloatingActionButton) findViewById(R.id.fab);
-        recyclerView.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         addListButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +45,13 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setHasFixedSize(true);
 
 
     }
+
+    /**
+     * Returns the Input value from the fragment
+     **/
 
     @Override
     public void OnInputInterface(CharSequence input) {
