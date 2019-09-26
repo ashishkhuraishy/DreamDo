@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
         });
 
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ToDoListAdapter(toDoLists);
 
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
+
 
 
     }
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
 
     @Override
     public void OnInputInterface(CharSequence input) {
-
         toDoLists.add(new ToDoList(input));
+        mAdapter = new ToDoListAdapter(toDoLists);
+        recyclerView.setAdapter(mAdapter);
     }
 }

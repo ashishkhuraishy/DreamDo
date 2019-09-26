@@ -6,28 +6,28 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:padding="15dp"
-    android:layout_gravity="center"
     app:cardCornerRadius="12dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/todoTextView"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="15dp"
             tools:text="My First ToDo"
-            android:layout_toEndOf="@+id/checkBox"
-            android:gravity="center_vertical" />
+            android:layout_weight="1" />
 
-    </RelativeLayout>
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
