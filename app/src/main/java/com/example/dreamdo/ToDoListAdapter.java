@@ -46,12 +46,14 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoLi
 
         ToDoList currentItem = toDoLists.get(position);
         holder.toDo.setText(currentItem.getToDoList());
+        holder.checkBox.setChecked(false);
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     toDoLists.remove(position);
+                    notifyDataSetChanged();
                     notifyItemRemoved(position);
                 }
             }

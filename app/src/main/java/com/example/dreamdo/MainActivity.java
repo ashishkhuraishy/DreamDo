@@ -1,5 +1,6 @@
 package com.example.dreamdo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -21,10 +22,13 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         toDoLists = new ArrayList<>();
 
@@ -41,9 +45,10 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
         });
 
         mLayoutManager = new LinearLayoutManager(this);
-
+        mAdapter = new ToDoListAdapter(toDoLists);
+        recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setHasFixedSize(true);
+
 
 
     }
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
     @Override
     public void OnInputInterface(CharSequence input) {
         toDoLists.add(new ToDoList(input));
-        mAdapter = new ToDoListAdapter(toDoLists);
-        recyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemChanged(mAdapter.getItemCount());
     }
 }
