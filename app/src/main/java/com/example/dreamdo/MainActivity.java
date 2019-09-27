@@ -2,6 +2,7 @@ package com.example.dreamdo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,13 +23,15 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences sherf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadData();
+        saveData();
 
         toDoLists = new ArrayList<>();
 
@@ -49,6 +52,20 @@ public class MainActivity extends AppCompatActivity implements ToDoBottomSheetFr
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
 
+
+
+    }
+
+    private void loadData() {
+
+
+
+    }
+
+    private void saveData() {
+
+        sherf =  PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+        SharedPreferences.Editor prefEditor = sherf.edit();
 
 
     }
